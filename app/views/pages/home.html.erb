@@ -2,7 +2,6 @@
   <p>Hello <%= current_user.email %> !</p>
   <p>You are a <%= current_user.role %></p>
   <% if current_user.admin? %>
-    <br>
     There are <%= User.count %> users in the system.
   <% end %>
   <p>
@@ -17,4 +16,5 @@
   <br>
   <%= link_to "Login", new_user_session_path %>
 <% end %>
+<%= link_to "List of Orders", orders_path %>
 

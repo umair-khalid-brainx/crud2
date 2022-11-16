@@ -1,0 +1,18 @@
+<h1>List of Orders</h1>
+
+<ul>
+  <% @orders.each do |order| %>
+    <li>
+      <p>
+        <strong>ID:</strong> <%= order.id %>,
+        <strong>Name:</strong> <%= order.name %>,
+        <strong>Email:</strong> <%= order.email %>,
+        <strong>Address:</strong> <%= order.address %>,
+        <strong>Phone Number:</strong> <%= order.phone %>,
+        <strong>Message:</strong> <%= order.message %>
+      </p>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to "New Order", new_order_path %>
