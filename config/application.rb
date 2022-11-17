@@ -1,5 +1,5 @@
 require_relative "boot"
-
+require "active_storage/engine"
 require "rails/all"
 
 # Require the gems listed in Gemfile, including any gems
@@ -10,6 +10,7 @@ module Crud2
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
+    config.serve_static_assets = true
 
     # Configuration for the application, engines, and railties goes here.
     #

@@ -1,6 +1,6 @@
 class OrderMailer < ApplicationMailer
   before_action { puts "========== BEFORE ACTION IN MAILER =========="}
-  before_action { puts "========== AFTER ACTION IN MAILER =========="}
+  after_action { puts "========== AFTER ACTION IN MAILER =========="}
   default from: "umair.khalid.brainxtech.test@gmail.com"
   layout "mailer"
   def new_order_email
@@ -12,7 +12,7 @@ class OrderMailer < ApplicationMailer
 
   def receive(email)
     order = Order.find_by(address: email.to.first)
-    page.emails.create(
+    order.emails.create(
       subject: email.subject,
       body: email.body
     )

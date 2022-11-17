@@ -1,6 +1,12 @@
 class OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
+    @order.avatar.attach(params[:order][:avatar])
+    if @order.avatar.attached?
+      puts "==========================ORDER ATTACHED WITH AVATAR================================"
+    else
+      puts "==========================ORDER NOT ATTACHED WITH AVATAR================================"
+    end
     # debugger
     if @order.save
       OrderMailer.with(order: @order).new_order_email.deliver_later
@@ -25,9 +31,22 @@ class OrdersController < ApplicationController
     @orders = Order.all
   end
 
-  private
+  def show
+    @order = Order.find(params[:id])
+    # redirect_to Current.order.url
+  end
 
+  def destroy
+    puts "===============Entered Delete Function==============="
+    @order = Order.find(params[:id])
+    @order.destroy
+    @order.avatar.purge
+    redirect_to orders_path, status: :see_other
+    puts "===============Left Delete Function==============="
+  end
+
+  private
   def order_params
-    params.require(:order).permit(:name, :email, :address, :phone, :message)
+    params.require(:order).permit(:name, :email, :address, :phone, :message, :avatar)
   end
 end
