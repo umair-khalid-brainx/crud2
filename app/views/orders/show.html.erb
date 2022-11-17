@@ -1,0 +1,12 @@
+<div>
+  <strong>ID:</strong> <%= @order.id %>,
+  <strong>Name:</strong> <%= @order.name %>,
+  <strong>Email:</strong> <%= @order.email %>,
+  <strong>Address:</strong> <%= @order.address %>,
+  <strong>Phone Number:</strong> <%= @order.phone %>,
+  <strong>Message:</strong> <%= @order.message %>
+  <strong>Avatar:</strong> <%= @order.avatar %>
+  <p><%= link_to "Delete Order", order_path(@order), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %></p>
+<!--  <strong>Avatar:</strong> <%#= image_tag @order.avatar %>-->
+<!--  <strong>Avatar:</strong> <%#= image_tag @order.avatar.variant(:thumb) %>-->
+</div>

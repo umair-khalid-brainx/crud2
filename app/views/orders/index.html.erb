@@ -3,14 +3,45 @@
 <ul>
   <% @orders.each do |order| %>
     <li>
-      <p>
-        <strong>ID:</strong> <%= order.id %>,
-        <strong>Name:</strong> <%= order.name %>,
-        <strong>Email:</strong> <%= order.email %>,
-        <strong>Address:</strong> <%= order.address %>,
-        <strong>Phone Number:</strong> <%= order.phone %>,
+      <div>
+        <strong>ID:</strong> <%= link_to order.id, order %>
+        <br>
+        <strong>Name:</strong> <%= order.name %>
+        <br>
+        <strong>Email:</strong> <%= order.email %>
+        <br>
+        <strong>Address:</strong> <%= order.address %>
+        <br>
+        <strong>Phone Number:</strong> <%= order.phone %>
+        <br>
         <strong>Message:</strong> <%= order.message %>
-      </p>
+        <br>
+        <strong>Avatar:</strong> <%= order.avatar %>
+        <br>
+        <strong>Avatar:</strong> <%= url_for(order.avatar) %>
+        <br>
+        <strong>Avatar:</strong> <%= image_tag order.avatar, width: "10%", height: "5%" %>
+        <br>
+        <strong>Avatar:</strong> <%= image_tag order.avatar.variant(:thumb) %>
+        <br>
+        <strong>Avatar:</strong> <%= image_tag rails_storage_proxy_path(order.avatar), width: "10%", height: "5%" %>
+        <br>
+        <strong>Avatar: </strong>
+        <% if order.avatar.representable? %>
+          <%= image_tag order.avatar.representation(resize_to_limit: [100, 100]) %>
+        <% end %>
+        <br>
+        <strong>Avatar: </strong>
+        <%= link_to rails_blob_path(order.avatar, disposition: "attachment") do %>
+          <%= image_tag "darth-vader.png", alt: "Download file", width: "10%", height: "5%" %>
+        <% end %>
+        <br>
+<!--     strong>Avatar:</strong> <%#= cdn_image_url(order.avatar.variant(resize_to_limit: [128, 128])) %>-->
+        <br>
+        <%= image_tag order.avatar.variant(resize_to_limit: [100, 100], saver: { strip: true, compression: 9 }) %>
+        <br>
+        <%= image_tag order.avatar.variant(resize_to_limit: [100, 100], format: :png, saver: { subsample_mode: "on", strip: true, interlace: true, quality: 80 }) %>
+      </div>
     </li>
   <% end %>
 </ul>

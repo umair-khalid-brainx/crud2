@@ -44,6 +44,11 @@ gem "bootsnap", require: false
 
 gem 'devise'
 gem 'mail'
+gem "image_processing"
+gem "aws-sdk-s3", require: false
+gem "azure-storage-blob", require: false
+gem "google-cloud-storage", "~> 1.11", require: false
+
 
 # Use Sass to process CSS
 # gem "sassc-rails"
